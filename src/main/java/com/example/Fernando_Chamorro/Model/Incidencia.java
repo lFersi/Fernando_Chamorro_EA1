@@ -17,13 +17,25 @@ public class Incidencia {
     @Size(min=1,max=30,message="Ingrese un usuario valido")
     private String usuario;
 
-
+    @NotBlank(message = "Estado no puede estar vacio")
+    @Size(min=1,max=30,message="Ingrese un estado valido")
     private String estadoIncidencia;
 
 
     private int nivelPrioridad;
 
-    
+
+    @NotBlank(message = "Fecha no puede estar vacia")
+    @Size(min=1,max=30,message="Ingrese una fecha valida")
     private String fechaReporte;
+
+
+    public Incidencia (String usuario, String estadoIncidencia, int nivelPrioridad, String fechaReporte) {
+        this.id = contador.getAndIncrement();
+        this.usuario = usuario;
+        this.estadoIncidencia = estadoIncidencia;
+        this.nivelPrioridad = nivelPrioridad;
+        this.fechaReporte = fechaReporte;
+    }
 
 }

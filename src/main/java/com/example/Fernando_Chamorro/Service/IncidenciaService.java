@@ -25,6 +25,10 @@ public class IncidenciaService {
         return incidenciaRepository.incidenciaPorID(id);
     }
 
+    public List<Incidencia> readByPriority(int nivelPrioridad){
+        return incidenciaRepository.incidenciaPorPrioridad(nivelPrioridad);
+    } 
+
     public String delete(int id){
         return incidenciaRepository.borrar(id);
     }
@@ -32,6 +36,10 @@ public class IncidenciaService {
     public String totalIncidencias(){
         int cantidad = incidenciaRepository.cantidadIncidencias();
         return "Total incidencias = "+ cantidad;
+    }
+
+    public void seed(){
+        incidenciaRepository.seed();
     }
 
 }

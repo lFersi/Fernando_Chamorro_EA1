@@ -15,7 +15,9 @@ import jakarta.validation.Valid;
 
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
 
@@ -46,7 +48,36 @@ public class IncidenciaController {
             }
             return ResponseEntity.ok(lista);
         }
+    
+    @GetMapping("inicializar")
+    public ResponseEntity<String> inicializar(){
+        incidenciaService.seed();
+        return ResponseEntity.ok("Incidencias Creadas");
+    }
+
+    @GetMapping("/id-{id}")
+    public Incidencia getIncidenciaById(@PathVariable int id){
+        return incidenciaService.readByID(id);
+    }
+
+    @GetMapping("/prioridad-{prioridad}")
+    public List<Incidencia> getIncidenciaByPriority(@PathVariable int prioridad){
+        return incidenciaService.readByPriority(prioridad);
+    }
+
+    @DeleteMapping("/borrar-{id}")
+    public String deleteInstancia(@PathVariable int id){
+        return incidenciaService.delete(id);
+    }
+
+    @GetMapping("/total")
+    public String getTotal() {
+        return incidenciaService.totalIncidencias();
     }
     
+}
+
+
+
 
 

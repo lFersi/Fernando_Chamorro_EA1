@@ -34,10 +34,26 @@ public class IncidenciaRepository {
         return null;
     }
 
+    public List<Incidencia> incidenciaPorPrioridad(int nivelPrioridad){
+        List<Incidencia> prioridad = new ArrayList<>();
+        for(Incidencia incidencia : listaIncidencias){
+            if(nivelPrioridad == incidencia.getNivelPrioridad()){
+                prioridad.add(incidencia);
+                
+            }
+        }
+        return prioridad;
+    }
+
     public String borrar(int id){
         if(listaIncidencias.remove(incidenciaPorID(id))){
             return "Incidencia eliminada";
         }
         return "Error al eliminar la incidencia";
+    }
+
+    public void seed(){
+        agregar(new Incidencia("Usario1","Abierta",1,"2024-06-01"));
+        agregar(new Incidencia("Usuario2","Pendiente",3,"2025-09-15"));
     }
 }
